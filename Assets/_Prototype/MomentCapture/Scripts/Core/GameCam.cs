@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using GameKit;
 public class GameCam : MonoBehaviour
 {
     [Header("General Settings")]
@@ -21,8 +22,10 @@ public class GameCam : MonoBehaviour
     [SerializeField] private bool isOcuppied = false;
     [SerializeField] private bool isMoving = false;
     [SerializeField] private bool canShot = true;
+    [SerializeField] private bool canMove = false;
+    [SerializeField] private bool canRoate = false;
     private Vector3 targetPos;
-    
+
 
     [Header("Move Constrait")]
     [SerializeField] private bool canUp = true;
@@ -41,6 +44,15 @@ public class GameCam : MonoBehaviour
         // maskSr = this.GetComponentsInChildren<SpriteRenderer>()[1];
         targetPos = this.transform.position;
         sampleCam = this.GetComponentInChildren<Camera>();
+        EventCenter.instance.AddEventListener("Activate Rotate",()=>{
+            canRoate = true;
+        });
+        // Usage: EventCenter.instance.EventTrigger("Activate Rotate");
+        EventCenter.instance.AddEventListener("Activate Move",()=>{
+            canMove = true;
+        });
+        // Usage: EventCenter.instance.EventTrigger("Activate Move");
+        
     }
 
     void Update()
@@ -73,11 +85,17 @@ public class GameCam : MonoBehaviour
 
     private void CameraRotate()
     {
+        if(!canRoate)
+            return;
         if (!canShot && !isOcuppied)
         {
-            Sprite tempSprite = Sprite.Create(camTexture, new Rect(0, 0, camTexture.width, camTexture.height), -pivot, 86);
-            maskSr.sprite = tempSprite;
-            maskSr.enabled = true;
+            if (camTexture != null)
+            {
+                Sprite tempSprite = Sprite.Create(camTexture, new Rect(0, 0, camTexture.width, camTexture.height), -pivot, 86);
+                maskSr.sprite = tempSprite;
+                maskSr.enabled = true;
+            }
+
 
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -86,7 +104,6 @@ public class GameCam : MonoBehaviour
                 {
                     isOcuppied = false;
                 });
-
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
@@ -100,6 +117,8 @@ public class GameCam : MonoBehaviour
     }
     private void CameraMove()
     {
+        if(!canMove)
+            return;
         if (isMoving)
         {
             if ((targetPos - transform.position).magnitude < smoothDistance)
@@ -182,7 +201,7 @@ public class GameCam : MonoBehaviour
                     if (capturable.IsCatchable())
                     {
                         MomentManager.instance.AddMoment(capturable.GetMoment(this.transform));
-                        if(MomentManager.instance.moments[i].entity.IsRotatable())
+                        if (MomentManager.instance.moments[i].entity.IsRotatable())
                             colls[i].gameObject.transform.parent = rotatable.transform;
                         else
                             colls[i].gameObject.transform.parent = unRotatable.transform;

@@ -68,7 +68,7 @@ public class Tile : Entity {
             return Ondown;
         return true;
     }
-    private void Start() {
+    protected override void OnStart() {
         TileData = new TileDatas(transform);
     }
 

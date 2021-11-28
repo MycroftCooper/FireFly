@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3028270864732636729}
   - component: {fileID: -1132619140863413029}
   - component: {fileID: 5986314718818957883}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Ground_0-2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,13 +199,13 @@ MonoBehaviour:
   rb: {fileID: 0}
   detectLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   isDetect: 0
   OnRight: 0
   OnLeft: 0
   OnUp: 0
   Ondown: 0
-  LRCenter: {x: 0.85, y: 0}
-  UDCenter: {x: 0, y: 0.34}
+  LRCenter: {x: 1.3, y: 0}
+  UDCenter: {x: 0, y: 0.52}
   LRSize: {x: 0.05, y: 0.7}
-  UDSize: {x: 1.7, y: 0.05}
+  UDSize: {x: 2.67, y: 0.05}

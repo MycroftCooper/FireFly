@@ -10,10 +10,10 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - GroundTile
+  - Ground
   - Water
   - UI
-  - 
+  - CanPhotoLayer
   - 
   - 
   - 
@@ -42,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: GameCam
+    uniqueID: 435896915
     locked: 0

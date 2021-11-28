@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class Barrier : Entity
+public abstract class Barrier : MonoBehaviour
 {
     public int damage = 0;
 
@@ -27,23 +27,6 @@ public abstract class Barrier : Entity
     private void OnTriggerExit2D(Collider2D collision)
     {
         //Debug.Log("BarrierExit");
-        if (collision.gameObject.GetComponent<BarrierComponent>())
-        {
-            ReleaseEvent();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.GetComponent<BarrierComponent>())
-        {
-            tBarrier = collision.gameObject.GetComponent<BarrierComponent>();
-            AddEvent(tBarrier);
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
         if (collision.gameObject.GetComponent<BarrierComponent>())
         {
             ReleaseEvent();
