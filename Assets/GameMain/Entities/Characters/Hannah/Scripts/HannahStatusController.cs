@@ -64,15 +64,17 @@ public class HannahStatusController : Entity {
     public int HPUpper;
     public int MP;
     public int MPUpper;
-
+    public TileDatas TileData;
 
     void Start() {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        Facing = CharacterFacings.Right;
         restingTime = 0;
         IsResting = false;
         HPUpper = 3;
         MPUpper = 5;
         MP = MPUpper;
+        TileData = new TileDatas(transform);
     }
 }

@@ -110,9 +110,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   collisionRadius: 0.125
-  bottomOffset: {x: 0, y: -0.3}
-  rightOffset: {x: 0, y: 0}
-  leftOffset: {x: -0.03, y: 0}
+  bottomOffset: {x: 0, y: -0.53}
+  rightOffset: {x: 0.09, y: 0}
+  leftOffset: {x: -0.09, y: 0}
   onGround: 0
   onWall: 0
   onRightWall: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   jumpParticle: {fileID: 0}
   MaxJumpTimes: 2
   JumpTimes: 0
-  jumpForce: 6.5
+  jumpForce: 7
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
 --- !u!50 &1818385121442094784
@@ -157,8 +157,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: -0.075}
-  m_Size: {x: 0.21, y: 0.64}
+  m_Offset: {x: 0, y: -0.13}
+  m_Size: {x: 0.35, y: 1}
   m_Direction: 0
 --- !u!199 &146542412892222794
 ParticleSystemRenderer:
@@ -262,7 +262,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 0}
   IsResting: 0
   RestingTimeLimit: 1000
-  HP: 0
+  hp: 1
   HPUpper: 0
   MP: 0
   MPUpper: 0
@@ -4984,5 +4984,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b04ba08ca6474db4fa9ba74f879060d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 0
+  IsHannah: 0
   invulnerabilityDuration: 3

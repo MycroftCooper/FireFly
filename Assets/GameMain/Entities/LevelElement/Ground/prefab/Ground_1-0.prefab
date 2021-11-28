@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1665862895018546932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -98,18 +98,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.7040473}
+  m_Offset: {x: 0, y: -0.1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 6.4200006, y: 6.4100003}
+    oldSize: {x: 1.003125, y: 1.0015625}
     newSize: {x: 0.63290757, y: 0.43554688}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 6.4200006, y: 5.0019064}
+  m_Size: {x: 1, y: 0.8}
   m_EdgeRadius: 0
 --- !u!50 &5156853990155786152
 Rigidbody2D:
@@ -147,13 +147,13 @@ MonoBehaviour:
   rb: {fileID: 0}
   detectLayer:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 8
   isDetect: 0
   OnRight: 0
   OnLeft: 0
   OnUp: 0
   Ondown: 0
-  LRCenter: {x: 0.32, y: 0}
-  UDCenter: {x: 0, y: 0.32}
-  LRSize: {x: 0.1, y: 0.5}
-  UDSize: {x: 0.5, y: 0.1}
+  LRCenter: {x: 0.5, y: 0}
+  UDCenter: {x: 0, y: 0.5}
+  LRSize: {x: 0.1, y: 1}
+  UDSize: {x: 1, y: 0.1}

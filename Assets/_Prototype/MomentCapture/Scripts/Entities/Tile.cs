@@ -1,8 +1,20 @@
 using UnityEngine;
 
-public class Tile : Entity
-{
+public class TileDatas {
+    public Vector3 OriginPosition { get; private set; }
+    public Vector3 OriginRoation { get; private set; }
+    public Vector3 OriginScale { get; private set; }
+    public TileDatas(Transform transform) {
+        OriginPosition = transform.position + Vector3.zero;
+        OriginRoation = transform.rotation.eulerAngles + Vector3.zero;
+        OriginScale = transform.localScale + Vector3.zero;
+        PhotoAbleEntityController.GetInstance.CanPotoGODict.Add(transform.gameObject, this);
+    }
+}
+
+public class Tile : Entity {
     public LayerMask detectLayer;
+    public TileDatas TileData;
     [SerializeField] private bool isDetect;
     public bool OnRight;
     public bool OnLeft;
@@ -12,17 +24,14 @@ public class Tile : Entity
     [SerializeField] private Vector2 UDCenter = new Vector2(0, 0.5f);
     [SerializeField] private Vector2 LRSize = Vector2.one;
     [SerializeField] private Vector2 UDSize = Vector2.one;
-    private void OnCollisionEnter2D(Collision2D other)
-    {
+    private void OnCollisionEnter2D(Collision2D other) {
         Debug.Log(other.gameObject.name);
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ground"))
-        {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ground")) {
             Debug.Log(other.contacts);
         }
     }
 
-    public void CheckAllContact()
-    {
+    public void CheckAllContact() {
         Vector3 lCenter = new Vector2(transform.position.x - LRCenter.x, transform.position.y + LRCenter.y);
         Vector3 rCenter = new Vector2(transform.position.x + LRCenter.x, transform.position.y + LRCenter.y);
         Vector3 uCenter = new Vector2(transform.position.x + UDCenter.x, transform.position.y + UDCenter.y);
@@ -33,16 +42,14 @@ public class Tile : Entity
         Ondown = CheckContact(dCenter, UDSize);
     }
 
-    public bool CheckContact(Vector2 center, Vector2 size)
-    {
+    public bool CheckContact(Vector2 center, Vector2 size) {
         if (MomentManager.instance.moments == null)
             return false;
         Collider2D coll = Physics2D.OverlapBox(center, size, 0, detectLayer);
         if (coll == null)
             return false;
         Entity contactEntity = coll.GetComponent<Entity>();
-        foreach (var item in MomentManager.instance.moments)
-        {
+        foreach (var item in MomentManager.instance.moments) {
             if (item.entity == contactEntity)
                 return false;
         }
@@ -50,8 +57,7 @@ public class Tile : Entity
     }
     public override void CatchCallBack() => isDetect = true;
     public override void UncatchCallBack() => isDetect = false;
-    public override bool GetConstraitData(string name)
-    {
+    public override bool GetConstraitData(string name) {
         if (name == "OnRight")
             return OnRight;
         else if (name == "OnLeft")
@@ -62,16 +68,17 @@ public class Tile : Entity
             return Ondown;
         return true;
     }
+    private void Start() {
+        TileData = new TileDatas(transform);
+    }
 
-    private void Update()
-    {
+    private void Update() {
         if (!isDetect)
             return;
         CheckAllContact();
     }
 
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Vector3 lCenter = new Vector2(transform.position.x - LRCenter.x, transform.position.y + LRCenter.y);
         Vector3 rCenter = new Vector2(transform.position.x + LRCenter.x, transform.position.y + LRCenter.y);
