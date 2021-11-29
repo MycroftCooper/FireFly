@@ -41,6 +41,8 @@ public class TotemController : MonoBehaviour {
             item.Key.transform.rotation = Quaternion.Euler(item.Value.OriginRoation.x, item.Value.OriginRoation.y, item.Value.OriginRoation.z);
             item.Key.transform.localScale = item.Value.OriginScale;
         }
+        hsc.HP = hsc.HPUpper;
+        hsc.MP = hsc.MPUpper;
     }
 
     void restoreCharacter() {

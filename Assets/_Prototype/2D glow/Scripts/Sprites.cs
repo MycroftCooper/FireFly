@@ -151,11 +151,13 @@ public class Sprites : Entity, ICapturable
     public override bool IsRotatable() => false;
     public override void CatchCallBack() 
     {
-        SpritesManager.spritesManager.DeleteSprite(this);
+        if(SpritesManager.spritesManager.sprites.Contains(this))
+            SpritesManager.spritesManager.DeleteSprite(this);
     }
     public override void UncatchCallBack() 
     {
-        SpritesManager.spritesManager.AddSprite(this);
+        if(!SpritesManager.spritesManager.capturedSprites.Contains(this))
+            SpritesManager.spritesManager.AddSprite(this);
     }
     #endregion
 

@@ -7,7 +7,11 @@ public class SpritesManager : MonoBehaviour
     public static SpritesManager spritesManager;
 
     public SpriteSetting setting;
-    List<Sprites> sprites = new List<Sprites>();
+    public Transform playePos;
+    public List<Sprites> capturedSprites = new List<Sprites>(); 
+    public List<Sprites> sprites = new List<Sprites>();
+
+    public int capturedNum=0; //拥有萤火虫的总数
 
     private void Awake()
     {
@@ -19,15 +23,17 @@ public class SpritesManager : MonoBehaviour
             Destroy(gameObject);
     }
 
+    /*
     private void Start()
     {
         Sprites[] FindALLSprites = FindObjectsOfType<Sprites>();
         foreach(Sprites child in FindALLSprites)
         {
             sprites.Add(child);
-            child.Initialize(setting, TargetPoint());
+            child.Initialize(setting, TargetPoint(playePos));
         }
     }
+*/
 
     private void Update()
     {
@@ -66,25 +72,25 @@ public class SpritesManager : MonoBehaviour
                     }
                 }
             }
-             s.target = TargetPoint();
+             s.target = TargetPoint(playePos);
 
         }
         s.numPerceivedFlockmates = companionNum;
     }
 
-    //跟随鼠标
-    Vector2 TargetPoint()
+    //跟随目标
+    Vector2 TargetPoint(Transform playerPostion)
     {
-        Vector3 mousePosition = Input.mousePosition;
-        Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
-        return mouseWorldPos;
+ //       Vector3 mousePosition = Input.mousePosition;
+ //       Vector2 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
+        return playerPostion.position;
     }
-
+    #region 相机拍摄时的效果
     //加入萤火虫
     public void AddSprite(Sprites s)
     {
         sprites.Add(s);
-        s.Initialize(setting, TargetPoint());
+        s.Initialize(setting, TargetPoint(playePos));
     }
 
     //删除萤火虫
@@ -92,4 +98,24 @@ public class SpritesManager : MonoBehaviour
     {
         sprites.Remove(s);
     }
+    #endregion
+
+    //是否已经捕捉过了
+    public bool IsMySprite(Sprites s)
+    {
+        if (capturedSprites.Contains(s))
+            return true;
+        else
+            return false;
+    }
+
+    //捕捉萤火虫的方法
+    public void Capture(Sprites s)
+    {
+        sprites.Add(s);
+        capturedSprites.Add(s);
+        s.Initialize(setting, TargetPoint(playePos));
+        capturedNum++;
+    }
+
 }
