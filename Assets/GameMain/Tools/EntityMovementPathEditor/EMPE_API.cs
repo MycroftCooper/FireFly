@@ -53,6 +53,11 @@ namespace EMPE {
 
         public void SetOriginalPos(Vector3 originalPos) {
             OriginalPos = originalPos;
+            MoveToNode(0);
+        }
+        public void SetOriginalRoa(Vector3 originalRoa) {
+            OriginalRoa = originalRoa;
+            MoveToNode(0);
         }
 
         public int GetNodeIndex(PathNodeData data) {

@@ -39,6 +39,7 @@ namespace EMPE {
         public List<PathNodeData> PathNodeList;
 
         public Vector3 OriginalPos { get; private set; }
+        public Vector3 OriginalRoa { get; private set; }
 
 
         public EventHandler StartMovementEventHandler;
@@ -52,6 +53,7 @@ namespace EMPE {
 
         void Start() {
             OriginalPos = transform.position;
+            OriginalRoa = transform.rotation.eulerAngles;
             if (IsPhysical) loadRigbody();
             SetPathShape(PathShape);
             StartMovement();
@@ -105,7 +107,7 @@ namespace EMPE {
             }
 
             Vector3 nextPosition = strategy.GetNextLerpPosition(f);
-            Vector3 nextRotation = Vector3.Lerp(originalNodeData.Rotation, targetNodeData.Rotation, f);
+            Vector3 nextRotation = OriginalRoa + Vector3.Lerp(originalNodeData.Rotation, targetNodeData.Rotation, f);
             Vector3 nextScale = Vector3.Lerp(originalNodeData.Scale, targetNodeData.Scale, f);
 
             if (IsPhysical) {

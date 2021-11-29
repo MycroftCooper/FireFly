@@ -392,6 +392,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0218335de02b1544fa5f6287a46604df, type: 3}
+--- !u!1 &52531250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9105762974561114425, guid: aa9b16b5279c8bd4da60e854a32203cc, type: 3}
+  m_PrefabInstance: {fileID: 1600104708}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &52531255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52531250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa6a8a0637ac574b9369638f3348a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsEditMode: 1
+  Is2D: 1
+  PathShape: 0
+  IsLoop: 1
+  IsPhysical: 1
+  IsForced: 0
+  IsMoving: 0
+  CurNodeIndex: 0
+  PathNodeList:
+  - ArrivalTime: 5
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    IsFlip: 0
+  - ArrivalTime: 5
+    Position: {x: 0, y: 3.97, z: 0}
+    Rotation: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    IsFlip: 0
+  rb3D: {fileID: 0}
+  rb2D: {fileID: 0}
 --- !u!1001 &52790699
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4401,6 +4439,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4245022850447093030, guid: 2839878fa6eaf25449c99086ee10f66e, type: 3}
   m_PrefabInstance: {fileID: 1090435186}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1406007677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2256367311090616840, guid: 0c72ae5aacc932f48a40dda73f038529, type: 3}
+  m_PrefabInstance: {fileID: 1294071711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406007682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1406007677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa6a8a0637ac574b9369638f3348a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsEditMode: 1
+  Is2D: 1
+  PathShape: 0
+  IsLoop: 1
+  IsPhysical: 1
+  IsForced: 0
+  IsMoving: 0
+  CurNodeIndex: 0
+  PathNodeList:
+  - ArrivalTime: 5
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    IsFlip: 0
+  - ArrivalTime: 5
+    Position: {x: -4.23, y: 0, z: 0}
+    Rotation: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    IsFlip: 0
+  rb3D: {fileID: 0}
+  rb2D: {fileID: 0}
 --- !u!4 &1427403894 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4245022850447093030, guid: 2839878fa6eaf25449c99086ee10f66e, type: 3}
@@ -5162,7 +5238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2256367311090616843, guid: 0c72ae5aacc932f48a40dda73f038529, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.226
+      value: -6.92
       objectReference: {fileID: 0}
     - target: {fileID: 2256367311090616843, guid: 0c72ae5aacc932f48a40dda73f038529, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5206,6 +5282,44 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c72ae5aacc932f48a40dda73f038529, type: 3}
+--- !u!1 &1656606586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2256367311090616840, guid: 0c72ae5aacc932f48a40dda73f038529, type: 3}
+  m_PrefabInstance: {fileID: 1656606585}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1656606587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656606586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa6a8a0637ac574b9369638f3348a2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsEditMode: 0
+  Is2D: 1
+  PathShape: 0
+  IsLoop: 1
+  IsPhysical: 1
+  IsForced: 0
+  IsMoving: 0
+  CurNodeIndex: 0
+  PathNodeList:
+  - ArrivalTime: 3
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: -0, y: 0, z: 0}
+    Scale: {x: 1, y: 1, z: 1}
+    IsFlip: 0
+  - ArrivalTime: 3
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: -0, y: 0, z: 180}
+    Scale: {x: 1, y: 1, z: 1}
+    IsFlip: 0
+  rb3D: {fileID: 0}
+  rb2D: {fileID: 0}
 --- !u!1001 &1669929037
 PrefabInstance:
   m_ObjectHideFlags: 0

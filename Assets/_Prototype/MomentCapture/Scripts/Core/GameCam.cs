@@ -1,11 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using GameKit;
-public class GameCam : MonoBehaviour
-{
+using System.Collections;
+using UnityEngine;
+public class GameCam : MonoBehaviour {
     [Header("General Settings")]
     public Vector2 cameraSize = new Vector2(2.9f, 2.9f);
     public Vector2 pivot = new Vector2(-0.5f, -0.5f);
@@ -38,34 +35,28 @@ public class GameCam : MonoBehaviour
     public float interval = 0.2f;
     [Range(0f, 1f)] public float smoothDistance = 0.3f;
 
-    void Start()
-    {
+    void Start() {
         // cameraSr = this.GetComponent<SpriteRenderer>();
         // maskSr = this.GetComponentsInChildren<SpriteRenderer>()[1];
         targetPos = this.transform.position;
         sampleCam = this.GetComponentInChildren<Camera>();
-        EventCenter.instance.AddEventListener("Activate Rotate",()=>{
+        EventCenter.instance.AddEventListener("Activate Rotate", () => {
             canRoate = true;
         });
         // Usage: EventCenter.instance.EventTrigger("Activate Rotate");
-        EventCenter.instance.AddEventListener("Activate Move",()=>{
+        EventCenter.instance.AddEventListener("Activate Move", () => {
             canMove = true;
         });
         // Usage: EventCenter.instance.EventTrigger("Activate Move");
-        
+
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if (!canShot)
-            {
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.C)) {
+            if (!canShot) {
                 CameraUse();
                 TurnOffCam();
-            }
-            else if (!isOcuppied && canShot)
-            {
+            } else if (!isOcuppied && canShot) {
                 if (isActive)
                     TurnOffCam();
                 else
@@ -83,44 +74,34 @@ public class GameCam : MonoBehaviour
         UpdateMoveConstrait();
     }
 
-    private void CameraRotate()
-    {
-        if(!canRoate)
+    private void CameraRotate() {
+        if (!canRoate)
             return;
-        if (!canShot && !isOcuppied)
-        {
-            if (camTexture != null)
-            {
+        if (!canShot && !isOcuppied) {
+            if (camTexture != null) {
                 Sprite tempSprite = Sprite.Create(camTexture, new Rect(0, 0, camTexture.width, camTexture.height), -pivot, 86);
                 maskSr.sprite = tempSprite;
                 maskSr.enabled = true;
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
+            if (Input.GetKeyDown(KeyCode.Q)) {
                 isOcuppied = true;
-                rotatable.transform.DORotate(rotatable.transform.eulerAngles + new Vector3(0, 0, 90), interval).OnComplete(() =>
-                {
+                rotatable.transform.DORotate(rotatable.transform.eulerAngles + new Vector3(0, 0, 90), interval).OnComplete(() => {
                     isOcuppied = false;
                 });
-            }
-            else if (Input.GetKeyDown(KeyCode.E))
-            {
+            } else if (Input.GetKeyDown(KeyCode.E)) {
                 isOcuppied = true;
-                rotatable.transform.DORotate(rotatable.transform.eulerAngles + new Vector3(0, 0, -90), interval).OnComplete(() =>
-                {
+                rotatable.transform.DORotate(rotatable.transform.eulerAngles + new Vector3(0, 0, -90), interval).OnComplete(() => {
                     isOcuppied = false;
                 });
             }
         }
     }
-    private void CameraMove()
-    {
-        if(!canMove)
+    private void CameraMove() {
+        if (!canMove)
             return;
-        if (isMoving)
-        {
+        if (isMoving) {
             if ((targetPos - transform.position).magnitude < smoothDistance)
                 isMoving = false;
             else
@@ -157,21 +138,16 @@ public class GameCam : MonoBehaviour
             this.transform.DOMove(targetPos, interval);
     }
 
-    private void CameraUse()
-    {
-
-        if (!canShot)
-        {
+    private void CameraUse() {
+        if (!canShot) {
             canShot = true;
             maskSr.enabled = false;
             canUp = true;
             canDown = true;
             canLeft = true;
             canRight = true;
-            if (MomentManager.instance.moments.Count > 0)
-            {
-                foreach (var item in MomentManager.instance.moments)
-                {
+            if (MomentManager.instance.moments.Count > 0) {
+                foreach (var item in MomentManager.instance.moments) {
                     item.entity.gameObject.transform.parent = item.parent;
                     item.entity.UncatchCallBack();
                 }
@@ -183,23 +159,18 @@ public class GameCam : MonoBehaviour
         RecordMoment();
     }
 
-    private void RecordMoment()
-    {
+    private void RecordMoment() {
         if (isOcuppied || isMoving)
             return;
-        cameraSr.DOColor(Color.black, 0.1f).OnComplete(() =>
-        {
+        cameraSr.DOColor(Color.black, 0.1f).OnComplete(() => {
             cameraSr.DOColor(Color.white, 0.1f);
             Collider2D[] colls = Physics2D.OverlapBoxAll(this.transform.position, cameraSize, 0, detectLayer);
             Debug.Log(colls.Length);
-            if (colls.Length > 0)
-            {
+            if (colls.Length > 0) {
                 canShot = false;
-                for (int i = 0; i < colls.Length; i++)
-                {
+                for (int i = 0; i < colls.Length; i++) {
                     ICapturable capturable = colls[i].gameObject.GetComponent<ICapturable>();
-                    if (capturable.IsCatchable())
-                    {
+                    if (capturable.IsCatchable()) {
                         MomentManager.instance.AddMoment(capturable.GetMoment(this.transform));
                         if (MomentManager.instance.moments[i].entity.IsRotatable())
                             colls[i].gameObject.transform.parent = rotatable.transform;
@@ -215,18 +186,15 @@ public class GameCam : MonoBehaviour
         });
     }
 
-    private void UpdateMoveConstrait()
-    {
-        if (!canShot && MomentManager.instance.moments != null)
-        {
+    private void UpdateMoveConstrait() {
+        if (!canShot && MomentManager.instance.moments != null) {
             if (MomentManager.instance.moments.Count == 0)
                 return;
             canUp = true;
             canDown = true;
             canLeft = true;
             canRight = true;
-            for (int i = 0; i < MomentManager.instance.moments.Count; i++)
-            {
+            for (int i = 0; i < MomentManager.instance.moments.Count; i++) {
                 canUp = !MomentManager.instance.moments[i].entity.GetConstraitData("OnUp") && canUp;
                 canDown = !MomentManager.instance.moments[i].entity.GetConstraitData("OnDown") && canDown;
                 canLeft = !MomentManager.instance.moments[i].entity.GetConstraitData("OnLeft") && canLeft;
@@ -237,51 +205,41 @@ public class GameCam : MonoBehaviour
     }
 
 
-    public void TweenColor(Color color)
-    {
-        cameraSr.DOColor(color, 0.05f).OnComplete(() =>
-        {
+    public void TweenColor(Color color) {
+        cameraSr.DOColor(color, 0.05f).OnComplete(() => {
             cameraSr.DOColor(Color.white, 0.5f);
         });
     }
 
-    public void TurnOnCam()
-    {
+    public void TurnOnCam() {
         isActive = true;
         isOcuppied = true;
         // Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
         // Vector3 gridMouseWorldPos = new Vector3(Mathf.Ceil(mouseWorldPos.x) - 0.5f, Mathf.Ceil(mouseWorldPos.y) - 0.5f, 0);
         // this.transform.position = gridMouseWorldPos;
-        this.transform.DOScale(Vector3.one, 0.15f).OnComplete(() =>
-        {
+        this.transform.DOScale(Vector3.one, 0.15f).OnComplete(() => {
             isOcuppied = false;
         });
     }
 
-    public void TurnOffCam()
-    {
+    public void TurnOffCam() {
         isActive = false;
         isOcuppied = true;
-        this.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() =>
-        {
+        this.transform.DOScale(Vector3.zero, 0.15f).OnComplete(() => {
             isOcuppied = false;
         });
     }
 
-    IEnumerator EndofFrame(Texture2D camTexture)
-    {
+    IEnumerator EndofFrame(Texture2D camTexture) {
         yield return new WaitForEndOfFrame();
         Vector3 cornorPos = new Vector3(sampleCam.transform.position.x, sampleCam.transform.position.y, 0);
         Vector3 screenPos = Camera.main.WorldToScreenPoint(cornorPos);
         Rect rect = new Rect(screenPos.x - sampleCam.pixelRect.width / 2, screenPos.y - sampleCam.pixelRect.height / 2, sampleCam.pixelRect.width, sampleCam.pixelRect.height);
 
         // 相机超出屏幕无法采样
-        if (rect.x + rect.width < 0 || rect.x + rect.width > Screen.width || rect.y + rect.height < 0 || rect.y + rect.height > Screen.height)
-        {
+        if (rect.x + rect.width < 0 || rect.x + rect.width > Screen.width || rect.y + rect.height < 0 || rect.y + rect.height > Screen.height) {
             TweenColor(Color.red);
-        }
-        else
-        {
+        } else {
             camTexture.ReadPixels(rect, 0, 0);
             camTexture.Apply();
         }
@@ -290,8 +248,7 @@ public class GameCam : MonoBehaviour
 
 
     //----------------------------------* Debug  *-----------------------------------/
-    private void OnDrawGizmos()
-    {
+    private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(this.transform.position, cameraSize);
     }

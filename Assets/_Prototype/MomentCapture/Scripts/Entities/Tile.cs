@@ -1,3 +1,4 @@
+using EMPE;
 using UnityEngine;
 
 public class TileDatas {
@@ -55,8 +56,22 @@ public class Tile : Entity {
         }
         return true;
     }
-    public override void CatchCallBack() => isDetect = true;
-    public override void UncatchCallBack() => isDetect = false;
+    EntityMovementPathController empc;
+    public override void CatchCallBack() {
+        isDetect = true;
+        empc = gameObject.GetComponent<EntityMovementPathController>();
+        if (empc != null) {
+            empc.PauseMovement();
+        }
+    }
+    public override void UncatchCallBack() {
+        isDetect = false;
+        if (empc != null) {
+            empc.SetOriginalPos(transform.position);
+            empc.SetOriginalRoa(transform.rotation.eulerAngles);
+            empc.ContinueMovement();
+        }
+    }
     public override bool GetConstraitData(string name) {
         if (name == "OnRight")
             return OnRight;

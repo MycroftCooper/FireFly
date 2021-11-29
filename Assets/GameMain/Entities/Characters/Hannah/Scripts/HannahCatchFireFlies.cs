@@ -19,6 +19,7 @@ public class HannahCatchFireFlies : MonoBehaviour {
             SM.Capture(firefly);
             firefliesNum++;
         }
+        firefliesNum++;
         openGameCam();
     }
 
