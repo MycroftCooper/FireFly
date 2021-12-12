@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Fluid
-  m_Shader: {fileID: -6465566751694194690, guid: a86db708c49f9e545be6000637c727f6, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 3175e920df09d354fbfdbde4d18042d0, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -120,7 +120,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0.86932284, b: 1.9766746, a: 1}
+    - _Color: {r: 0, g: 0.6509431, b: 0.6509434, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 0, g: 522.03925, b: 766.9961, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}

@@ -1,16 +1,17 @@
 using UnityEngine;
 using UnityEditor;
 using System.IO;
-
+#if UNITY_EDITOR
 /// <summary>
 /// 图像分离保存
 /// </summary>
-public class SpriteSave
-{
+public class SpriteSave {
+
+    //用到编辑器的代码
 
     [MenuItem("Tools/SpriteSave")]
-    public static void DoSplitTexture()
-    {
+
+    public static void DoSplitTexture() {
         Texture2D selectedImg = Selection.activeObject as Texture2D;
         string rootPath = Path.GetDirectoryName(AssetDatabase.GetAssetPath(selectedImg));
         string path = rootPath + "/" + selectedImg.name + ".png";
@@ -21,8 +22,7 @@ public class SpriteSave
         AssetDatabase.CreateFolder(rootPath, selectedImg.name);
 
 
-        foreach (SpriteMetaData metaData in texImp.spritesheet)
-        {
+        foreach (SpriteMetaData metaData in texImp.spritesheet) {
 
             var width = (int)metaData.rect.width;
             var height = (int)metaData.rect.height;
@@ -37,8 +37,7 @@ public class SpriteSave
             smallImg.SetPixels(0, 0, width, height, colors);
 
             //  EncodeToPNG兼容
-            if (TextureFormat.ARGB32 != smallImg.format && TextureFormat.RGB24 != smallImg.format)
-            {
+            if (TextureFormat.ARGB32 != smallImg.format && TextureFormat.RGB24 != smallImg.format) {
                 Texture2D img = new Texture2D(smallImg.width, smallImg.height);
                 img.SetPixels(smallImg.GetPixels(0), 0);
                 smallImg = img;
@@ -62,3 +61,4 @@ public class SpriteSave
         }
     }
 }
+#endif

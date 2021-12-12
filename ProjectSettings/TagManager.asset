@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Agent
   - CanBePhoto
+  - Liquid
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - CanPhotoLayer
   - FrontGround
   - BackGround
-  - 
+  - Liquid
   - 
   - 
   - 

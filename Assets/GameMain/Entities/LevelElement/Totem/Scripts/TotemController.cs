@@ -37,7 +37,7 @@ public class TotemController : MonoBehaviour {
         if (paec.CanPotoGODict.Count == 0)
             return;
         foreach (var item in paec.CanPotoGODict) {
-            tools.moveToPositionByCoroutine(item.Key.transform, item.Value.OriginPosition, 3, 5, null);
+            tools.moveToPositionByCoroutine(item.Key.transform, item.Value.OriginPosition, 5, 8, null);
             item.Key.transform.rotation = Quaternion.Euler(item.Value.OriginRoation.x, item.Value.OriginRoation.y, item.Value.OriginRoation.z);
             item.Key.transform.localScale = item.Value.OriginScale;
         }

@@ -48,7 +48,7 @@ public class GameCam : MonoBehaviour {
             canMove = true;
         });
         // Usage: EventCenter.instance.EventTrigger("Activate Move");
-
+        TurnOffCam();
     }
 
     void Update() {
@@ -217,6 +217,9 @@ public class GameCam : MonoBehaviour {
         // Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane));
         // Vector3 gridMouseWorldPos = new Vector3(Mathf.Ceil(mouseWorldPos.x) - 0.5f, Mathf.Ceil(mouseWorldPos.y) - 0.5f, 0);
         // this.transform.position = gridMouseWorldPos;
+        GameObject hannah = GameObject.Find("Hannah");
+        transform.position = new Vector3(hannah.transform.position.x, hannah.transform.position.y, transform.position.z);
+        targetPos = transform.position;
         this.transform.DOScale(Vector3.one, 0.15f).OnComplete(() => {
             isOcuppied = false;
         });

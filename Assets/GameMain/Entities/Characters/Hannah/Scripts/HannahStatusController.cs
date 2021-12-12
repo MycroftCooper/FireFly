@@ -35,6 +35,7 @@ public class HannahStatusController : Entity {
     }
 
     public bool IsResting;
+    public bool IsTakingPhoto;
     public int RestingTimeLimit;
     private int restingTime;
     public int RestingTime {
@@ -72,6 +73,7 @@ public class HannahStatusController : Entity {
         Facing = CharacterFacings.Right;
         restingTime = 0;
         IsResting = false;
+        IsTakingPhoto = false;
         HPUpper = 3;
         MPUpper = 5;
         MP = MPUpper;

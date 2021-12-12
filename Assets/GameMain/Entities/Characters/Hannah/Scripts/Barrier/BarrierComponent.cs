@@ -48,7 +48,10 @@ public class BarrierComponent : MonoBehaviour {
         }
         OnTakeBarrier.Invoke();
     }
-
+    public void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "Liquid")
+            hsc.HP = -1;
+    }
     public void EnableInvulnerable() {
         invulnerable = true;
         inulnerabilityTimer = invulnerabilityDuration;
